@@ -1,14 +1,115 @@
 ﻿// ============================================================
-// SISTEMA DE INVENTARIO - Clase 1.1
-// Estado: Mensaje de bienvenida
+// SISTEMA DE INVENTARIO - Clase 1.2
+// Estado: Estructura profesional configurada
 // ============================================================
 
-using System.Reflection;
+/* using System.Reflection;
 
 var assembly = Assembly.GetExecutingAssembly();
-var version = assembly.GetName().Version;
+var version = assembly.GetName().Version; */
+
+//Variables
+
+using System.Collections;
+
+int cantidadProductos = 0;
+decimal valorTotalDelInventario = 0.00m;
+bool sistemaActivo = true;
+string nombreSistema = "Sistema de Gestión de Inventario";
 
 MostrarBanner();
+
+bool continuar = true;
+
+while (continuar)
+{
+    MostrarMenu();
+    string comando = LeerEntrada("inventario"); //Console.ReadLine();
+    Console.WriteLine($"Comando ingresado: {comando}");
+    continuar = false;
+    //continuar = ProcesarComando(comando);
+}
+
+//==================== MÉTODOS ========================//
+
+bool ProcesarComando(string comando)
+{
+    switch (comando)
+    {
+        case "listar":
+            ListarProductos();
+            return true;  
+        case "agregar":
+            AgregarProducto();
+            return true;
+        case "buscar":
+            BuscarProducto();
+            return true;
+        case "salir":
+            return false;
+        default:
+            Console.WriteLine($"Comando '{comando}' no válido");
+            return true;
+    }
+    
+}
+
+string LeerEntrada(string prompt)
+{
+    string salida = $"El prompt ingresado es: {prompt}";
+    return salida;
+}
+
+void ListarProductos()
+{
+    Console.WriteLine($"Total: {cantidadProductos} productos en el inventario");
+    Console.WriteLine($"Valor: {valorTotalDelInventario}");
+}
+
+void AgregarProducto()
+{
+    Console.WriteLine("Agregar producto (Modulo 3)");
+}
+
+void BuscarProducto()
+{
+    Console.WriteLine("Buscar producto (Modulo 4)");
+}
+
+// ============== FUNCIONES ========================
+void MostrarBanner()
+{
+    Console.WriteLine("==========================================");
+    Console.WriteLine("    SISTEMA DE GESTIÓN DE INVENTARIO      ");
+    Console.WriteLine("==========================================");
+    Console.WriteLine();
+    //Console.WriteLine($"Versión: {version}");
+    //Console.WriteLine($"Plataforma: {Environment.OSVersion}");
+    //Console.WriteLine($".NET Version: {Environment.Version}");
+    Console.WriteLine();
+}
+
+void MostrarAyuda()
+{
+    Console.WriteLine("USO: InventarioApp [comando] [opciones]");
+    Console.WriteLine();
+    Console.WriteLine("COMANDOS:");
+    Console.WriteLine("  --help, -h      Muestra esta ayuda");
+    Console.WriteLine("  --version, -v   Muestra la version del programa");
+    Console.WriteLine();
+    Console.WriteLine("EJEMPLOS:");
+    Console.WriteLine(" dotnet run -- --help");
+    Console.WriteLine(" dotnet run -- --version");
+}
+
+void MostrarMenu()
+{
+    Console.WriteLine("\nMENU PRINCIPAL:");
+    Console.WriteLine("1. Listar - Ver productos");
+    Console.WriteLine("2. Agregar - Añadir producto");
+    Console.WriteLine("3. Buscar - Buscar producto");
+    Console.WriteLine("4. Salir - Terminar\n");
+}
 
 /* Console.WriteLine("Ingrese un valor: ");
 string? entrada = Console.ReadLine();
@@ -20,7 +121,7 @@ Console.WriteLine($"Comando limpio: {comandoLimpio} "); */
 
 
 
-if (args.Length > 0)
+/*if (args.Length > 0)
 {
     switch (args[0].ToLower())
     {
@@ -41,12 +142,6 @@ if (args.Length > 0)
             break;
     }
 }
-
-int cantidadProductos = 0;
-decimal valorTotalDelInventario = 0.00m;
-bool sistemaActivo = true;
-string nombreSistema = "Sistema de Gestión de Inventario";
-
 
 Console.WriteLine("Estado del Sistema");
 Console.WriteLine($"Nombre: {nombreSistema}");
@@ -84,7 +179,7 @@ while (sistemaActivo)
             break;
     }
 
-}
+} */
 
 
 /* Console.WriteLine("Ingrese una cantidad:");
@@ -138,29 +233,3 @@ Console.WriteLine("Carpeta src/ creada");
 Console.WriteLine("Medadatos configurados");
 Console.WriteLine();
 Console.WriteLine("Próximo paso: Checkpoint"); */
-
-// ============== FUNCIONES ========================
-void MostrarBanner()
-{
-    Console.WriteLine("==========================================");
-    Console.WriteLine("    SISTEMA DE GESTIÓN DE INVENTARIO      ");
-    Console.WriteLine("==========================================");
-    Console.WriteLine();
-    Console.WriteLine($"Versión: {version}");
-    Console.WriteLine($"Plataforma: {Environment.OSVersion}");
-    Console.WriteLine($".NET Version: {Environment.Version}");
-    Console.WriteLine();
-}
-
-void MostrarAyuda()
-{
-    Console.WriteLine("USO: InventarioApp [comando] [opciones]");
-    Console.WriteLine();
-    Console.WriteLine("COMANDOS:");
-    Console.WriteLine("  --help, -h      Muestra esta ayuda");
-    Console.WriteLine("  --version, -v   Muestra la version del programa");
-    Console.WriteLine();
-    Console.WriteLine("EJEMPLOS:");
-    Console.WriteLine(" dotnet run -- --help");
-    Console.WriteLine(" dotnet run -- --version");
-}
