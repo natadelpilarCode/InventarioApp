@@ -112,6 +112,11 @@ public class InMemoryProductoRepository : IProductoRepository
         return _productos.OrderByDescending(p=>p.Precio).FirstOrDefault().Precio;
     }
 
+    public Producto? ObtenerProductoMasCaro_()
+    {
+        return _productos.OrderByDescending(p=>p.Precio).FirstOrDefault();
+    }
+
     public Dictionary<CategoriaProducto, decimal> ObtenerValorPorCategoria()
     {
         return _productos
